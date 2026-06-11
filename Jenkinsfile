@@ -39,4 +39,13 @@ pipeline {
             }
         }
     }
+        
+    post {
+        failure {
+            emailext body: 'Le build $BUILD_NUMBER a ECHOUE !\n\nVoir les détails : $BUILD_URL',
+                     recipientProviders: [requestor()],
+                     subject: 'ECHEC Build Jenkins #$BUILD_NUMBER',
+                     to: 'andrianirinarivelohenintsoaang@gmail.com'
+        }
+    }
 }
